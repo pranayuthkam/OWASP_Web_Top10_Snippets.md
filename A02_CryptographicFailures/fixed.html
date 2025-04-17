@@ -1,0 +1,28 @@
+<!-- Fixed using AES-GCM encryption with Web Crypto API -->
+<!DOCTYPE html>
+<html>
+<body>
+  <script>
+    async function encryptData(data) {
+      const enc = new TextEncoder();
+      const key = await crypto.subtle.generateKey(
+        { name: "AES-GCM", length: 256 },
+        true,
+        ["encrypt", "decrypt"]
+      );
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const ciphertext = await crypto.subtle.encrypt(
+        { name: "AES-GCM", iv: iv },
+        key,
+        enc.encode(data)
+      );
+
+      // Store encrypted data and IV
+      localStorage.setItem("ciphertext", btoa(String.fromCharCode(...new Uint8Array(ciphertext))));
+      localStorage.setItem("iv", btoa(String.fromCharCode(...iv)));
+    }
+
+    encryptData("user_password123");
+  </script>
+</body>
+</html>
