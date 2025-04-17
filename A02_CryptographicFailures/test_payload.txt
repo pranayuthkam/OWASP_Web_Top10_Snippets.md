@@ -1,0 +1,7 @@
+Vulnerable Behavior:
+- Inspect localStorage → token is easily decodable using base64 decode
+- Decode: atob(localStorage.getItem('token'))
+
+Fixed Behavior:
+- Encrypted data is not human-readable or reversible without the key and IV
+- Test with: localStorage.getItem('ciphertext') (will be random binary string)
