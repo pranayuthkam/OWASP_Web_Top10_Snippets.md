@@ -1,0 +1,14 @@
+<!-- Vulnerable to weak cryptography (Base64 encoding used instead of proper encryption) -->
+<!DOCTYPE html>
+<html>
+<body>
+  <script>
+    const sensitiveData = "user_password123";
+    const encoded = btoa(sensitiveData);  // Base64 is NOT encryption!
+    console.log("Encoded Data:", encoded);
+
+    // Simulate storage or transmission
+    localStorage.setItem("token", encoded);
+  </script>
+</body>
+</html>
