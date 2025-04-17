@@ -1,0 +1,9 @@
+### 🔓 vulnerable.py
+```python
+from flask import Flask, request
+app = Flask(__name__)
+
+@app.route('/admin')
+def admin():
+    # No access control checks
+    return "Welcome to the admin panel!"
