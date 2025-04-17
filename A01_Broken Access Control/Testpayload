@@ -1,0 +1,7 @@
+### 🧪 test_payload.txt
+```
+GET /admin?user=guest
+Expected: 403 Forbidden
+GET /admin?user=admin
+Expected: 200 OK
+```
